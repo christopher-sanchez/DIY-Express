@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     res.json(categories);
 });
 
-rounter.post('/',(req,res)=>{
+router.post('/',(req,res)=>{
     const {name} = req.body;
     const newCategory = {
         id: getNextId(categories),

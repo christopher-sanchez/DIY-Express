@@ -1,9 +1,9 @@
 import express from 'express';
 import { tasks, getNextId} from '../data/storage.js';
 
-const rounter = express.Router();
+const router = express.Router();
 
-rounter.get('/', (req, res) => {
+router.get('/', (req, res) => {
     const {completed} = req.query;
 
     if(completed !== undefined){
@@ -13,7 +13,7 @@ rounter.get('/', (req, res) => {
     res.json(tasks);
 });
 
-rounter.get('/:id',(req,res) => {
+router.get('/:id',(req,res) => {
     const tasks = tasks.find(t => t.id === parseInt(req.params.id));
     if(!task){
         return res.status(404).json({error: 'Task not found'});
@@ -21,7 +21,7 @@ rounter.get('/:id',(req,res) => {
     res.json(task);
 });
 
-rounter.post('/', (req,res)=> {
+router.post('/', (req,res)=> {
     const {title, categoryId} = req.body;
     const newTask = {
         id: getNextId(tasks), title, completed: false, categoryId:
@@ -31,9 +31,9 @@ rounter.post('/', (req,res)=> {
     res.status(201).json(newTask);
     });
 
-    export default rounter;
+    export default router;
 
-rounter.put('/:id', (req, res)=> {
+router.put('/:id', (req, res)=> {
     const id = parseInt(req.params.id);
     const index = tasks.findIndex(t => t.id === id);
 

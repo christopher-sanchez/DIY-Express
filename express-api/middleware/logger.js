@@ -3,7 +3,7 @@ const logger = (req,res, next) => {
     const method = req.method;
     const url = req.originalUrl;
 
-    console.llog('[${timestamp}] ${method} ${url}');
+    console.log('[${timestamp}] ${method} ${url}');
 
     const start = Date.now();
 
